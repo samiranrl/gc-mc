@@ -488,7 +488,7 @@ else:
     print('polyak val rmse = ', val_rmse)
 
 print('\nSETTINGS:\n')
-for key, val in sorted(vars(ap.parse_args()).iteritems()):
+for key, val in sorted(vars(ap.parse_args()).items()):
     print(key, val)
 
 print('global seed = ', seed)

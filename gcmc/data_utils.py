@@ -9,9 +9,18 @@ import scipy.sparse as sp
 import random
 
 # For automatic dataset downloading
-from urllib2 import urlopen
+
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+
 from zipfile import ZipFile
-from StringIO import StringIO
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import shutil
 import os.path
 
@@ -64,7 +73,7 @@ def download_dataset(dataset, files, data_dir):
 
     if not np.all([os.path.isfile(data_dir + f) for f in files]):
         url = "http://files.grouplens.org/datasets/movielens/" + dataset.replace('_', '-') + '.zip'
-        request = urlopen(url)
+        request = urllib2.urlopen(url)
 
         print('Downloading %s dataset' % dataset)
         if dataset in ['ml_100k', 'ml_1m']:
